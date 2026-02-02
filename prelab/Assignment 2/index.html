@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tensor Math Operations</title>
+
+  <!-- TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #111827;
+      padding: 30px 50px;
+      border-radius: 16px;
+      border: 2px solid #00ffd5;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      text-align: center;
+      min-width: 360px;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      color: #d1d5db;
+      font-size: 15px;
+    }
+
+    .highlight {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(0, 255, 213, 0.15);
+      color: #00ffd5;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Tensor Math Operations</h2>
+    <p>TensorFlow.js Addition & Multiplication</p>
+    <div class="highlight">Open Console (F12) to see results</div>
+  </div>
+
+  <script>
+    console.log("✅ TensorFlow.js Math Demo");
+
+    const a = tf.tensor1d([1, 2, 3]);
+    const b = tf.tensor1d([10, 10, 10]);
+
+    const sum = a.add(b);
+    const product = a.mul(b);
+
+    console.log("Tensor A:", a.arraySync());
+    console.log("Tensor B:", b.arraySync());
+
+    console.log("Addition Result (A + B):", sum.arraySync());
+    console.log("Multiplication Result (A × B):", product.arraySync());
+
+    a.dispose();
+    b.dispose();
+    sum.dispose();
+    product.dispose();
+
+    console.log("✅ Done");
+  </script>
+
+</body>
+</html>

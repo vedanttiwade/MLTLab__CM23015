@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tensor Dimensions (Console)</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #1e1e1e;
+      padding: 30px 50px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+      text-align: center;
+      min-width: 300px;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #cccccc;
+    }
+
+    .note {
+      margin-top: 15px;
+      color: #00ffd5;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Tensor Dimensions</h2>
+    <p>Open the browser console (F12)</p>
+    <p class="note">Scalar, Vector, Matrix — TensorFlow.js</p>
+  </div>
+
+  <script>
+    console.log("✅ TensorFlow.js loaded");
+
+    const scalar = tf.scalar(5);
+    const vector = tf.tensor([1, 2, 3]);
+    const matrix = tf.tensor([[1, 2], [3, 4]]);
+
+    console.log("Scalar (0D):", scalar.arraySync());
+    console.log("Scalar shape:", scalar.shape);
+
+    console.log("Vector (1D):", vector.arraySync());
+    console.log("Vector shape:", vector.shape);
+
+    console.log("Matrix (2D):", matrix.arraySync());
+    console.log("Matrix shape:", matrix.shape);
+
+    scalar.dispose();
+    vector.dispose();
+    matrix.dispose();
+
+    console.log("✅ Done");
+  </script>
+
+</body>
+</html>

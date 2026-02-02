@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TensorFlow.js Console Test</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #1e1e1e;
+      padding: 30px 50px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+      text-align: center;
+      min-width: 320px;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    #output {
+      font-size: 20px;
+      color: #00ffd5;
+      font-weight: bold;
+      background: rgba(0, 255, 213, 0.12);
+      padding: 10px 15px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>TensorFlow.js Console Check</h1>
+    <p id="output">Check browser console (F12)</p>
+  </div>
+
+  <!-- TensorFlow.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
+  <script>
+    console.log("✅ Console is working");
+
+    const output = document.getElementById("output");
+
+    const a = tf.tensor([1, 2, 3]);
+    const b = tf.tensor([4, 5, 6]);
+
+    console.log("Tensor a:");
+    console.log(a.arraySync());
+
+    console.log("Tensor b:");
+    console.log(b.arraySync());
+
+    const result = a.add(b);
+
+    console.log("Result (a + b):");
+    console.log(result.arraySync());
+
+    output.innerText = "Result: " + result.arraySync().join(", ");
+
+    a.dispose();
+    b.dispose();
+    result.dispose();
+
+    console.log("✅ Done");
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tensor Reshape & Flatten</title>
+
+  <!-- TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #0f172a;
+      padding: 35px 55px;
+      border-radius: 18px;
+      border: 2px solid #38bdf8;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.75);
+      text-align: center;
+      min-width: 380px;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      color: #cbd5f5;
+      font-size: 15px;
+      margin: 6px 0;
+    }
+
+    .highlight {
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      font-weight: bold;
+      border: 1px dashed #38bdf8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Tensor Reshape & Flatten</h2>
+    <p>TensorFlow.js Shape Transformation</p>
+    <div class="highlight">Open Console (F12) to view results</div>
+  </div>
+
+  <script>
+    console.log("✅ Tensor Reshape Demo Started");
+
+    // Start with a 1D vector
+    const original = tf.tensor1d([1, 2, 3, 4]);
+
+    // Reshape to 2x2 matrix
+    const reshaped = original.reshape([2, 2]);
+
+    // Flatten back to 1D
+    const flattened = reshaped.flatten();
+
+    console.log("Original (1D):", original.arraySync());
+    console.log("Original shape:", original.shape);
+
+    console.log("Reshaped (2x2):", reshaped.arraySync());
+    console.log("Reshaped shape:", reshaped.shape);
+
+    console.log("Flattened (Back to 1D):", flattened.arraySync());
+    console.log("Flattened shape:", flattened.shape);
+
+    original.dispose();
+    reshaped.dispose();
+    flattened.dispose();
+
+    console.log("✅ Done");
+  </script>
+
+</body>
+</html>
