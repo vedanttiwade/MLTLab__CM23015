@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prac 2 Assignment 2: Learning Rates</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #f8f9fa; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .controls { margin-bottom: 20px; display: flex; justify-content: center; gap: 10px; }
+        canvas { background: #fff; margin-top: 20px; border: 1px solid #eee; }
+        .legend-box { display: flex; justify-content: center; gap: 20px; margin-top: 10px; font-weight: bold; }
+        .high { color: #ff6384; } .mid { color: #36a2eb; } .low { color: #ffce56; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Experiment: Learning Rate & Convergence</h2>
+    <p>Watch how the "Loss" (error) drops differently for each learning rate.</p>
+    
+    <div class="controls">
+        <button id="start-btn" onclick="runExperiment()">Start Experiment</button>
+    </div>
+
+    <div class="legend-box">
+        <span class="high">Fast (0.1)</span>
+        <span class="mid">Medium (0.01)</span>
+        <span class="low">Slow (0.001)</span>
+    </div>
+
+    <canvas id="lossChart"></canvas>
+</div>
+
+<script>
+    let chart;
+
+    async function runExperiment() {
+        document.getElementById('start-btn').disabled = true;
+        
+        // 1. Synthetic Data: y = 2x
+        const xs = tf.tensor2d([1, 2, 3, 4, 5, 6], [6, 1]);
+        const ys = tf.tensor2d([2, 4, 6, 8, 10, 12], [6, 1]);
+
+        const rates = [0.1, 0.01, 0.001];
+        const colors = ['#ff6384', '#36a2eb', '#ffce56'];
+        const lossHistory = [[], [], []];
+
+        // Prepare Chart
+        initChart();
+
+        // 2. Train 3 separate models
+        for (let i = 0; i < rates.length; i++) {
+            const lr = rates[i];
+            const model = tf.sequential();
+            model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+            
+            // Using SGD optimizer with specific learning rate
+            model.compile({optimizer: tf.train.sgd(lr), loss: 'meanSquaredError'});
+
+            console.log(`Starting training for LR: ${lr}`);
+
+            await model.fit(xs, ys, {
+                epochs: 50,
+                callbacks: {
+                    onEpochEnd: (epoch, logs) => {
+                        lossHistory[i].push(logs.loss);
+                        updateChart(epoch, lossHistory);
+                    }
+                }
+            });
+        }
+        document.getElementById('start-btn').disabled = false;
+    }
+
+    function initChart() {
+        const ctx = document.getElementById('lossChart').getContext('2d');
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 50}, (_, i) => i + 1),
+                datasets: [
+                    { label: 'LR: 0.1 (High)', data: [], borderColor: '#ff6384', fill: false },
+                    { label: 'LR: 0.01 (Mid)', data: [], borderColor: '#36a2eb', fill: false },
+                    { label: 'LR: 0.001 (Low)', data: [], borderColor: '#ffce56', fill: false }
+                ]
+            },
+            options: { 
+                animation: false,
+                scales: { 
+                    y: { type: 'logarithmic', title: { display: true, text: 'Loss (Error)' } },
+                    x: { title: { display: true, text: 'Epoch' } }
+                }
+            }
+        });
+    }
+
+    function updateChart(epoch, history) {
+        chart.data.datasets[0].data = history[0];
+        chart.data.datasets[1].data = history[1];
+        chart.data.datasets[2].data = history[2];
+        chart.update();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 1: Tensor Dimensions & Regression</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .tensor-box { background: #2d3436; color: #fab1a0; padding: 15px; border-radius: 8px; text-align: left; font-family: monospace; margin-bottom: 20px; white-space: pre-wrap; }
+        h2 { color: #0984e3; border-bottom: 2px solid #dfe6e9; padding-bottom: 10px; }
+        .label { font-weight: bold; color: #636e72; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Assignment 1: Tensor Dimensions & AI Training</h2>
+    <p>This page demonstrates creating tensors of different ranks and using them to train a model.</p>
+
+    <span class="label">1. Scalar (Rank 0) - The Bias Constant:</span>
+    <div id="scalar-out" class="tensor-box">Loading...</div>
+
+    <span class="label">2. Vector (Rank 1) - Input Array:</span>
+    <div id="vector-out" class="tensor-box">Loading...</div>
+
+    <span class="label">3. Matrix (Rank 2) - Training Data:</span>
+    <div id="matrix-out" class="tensor-box">Loading...</div>
+
+    <hr>
+    <h3>Model Training Result</h3>
+    <div id="model-status">Training simple regression...</div>
+</div>
+
+<script>
+    async function runAssignment() {
+        // --- PART 1: TENSOR CREATION ---
+
+        // A. SCALAR: Representing a single fixed value (The 'b' in mx+b)
+        const scalar = tf.scalar(10); 
+        document.getElementById('scalar-out').innerText = 
+            `Value: ${scalar.dataSync()}\nShape: ${scalar.shape} (Rank 0)`;
+
+        // B. VECTOR: A 1D array of inputs
+        const vector = tf.tensor1d([1, 2, 3, 4, 5]);
+        document.getElementById('vector-out').innerText = 
+            `Values: [${vector.dataSync()}]\nShape: ${vector.shape} (Rank 1)`;
+
+        // C. MATRIX: A 2D array (Required for most ML inputs)
+        // Creating a 5x1 matrix (5 rows, 1 column)
+        const matrix = tf.tensor2d([1, 2, 3, 4, 5], [5, 1]);
+        document.getElementById('matrix-out').innerText = 
+            `Values: \n[[${matrix.dataSync().join('],\n [')}]]\nShape: ${matrix.shape} (Rank 2)`;
+
+
+        // --- PART 2: SIMPLE REGRESSION ---
+        
+        // Define actual y values (y = 2x + 10)
+        const ys = tf.tensor2d([12, 14, 16, 18, 20], [5, 1]);
+
+        const model = tf.sequential();
+        model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+        model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
+
+        await model.fit(matrix, ys, {epochs: 100});
+
+        const prediction = model.predict(tf.tensor2d([6], [1, 1]));
+        const result = prediction.dataSync()[0];
+
+        document.getElementById('model-status').innerHTML = 
+            `<strong>Prediction:</strong> For input 6, AI predicted <strong>${result.toFixed(2)}</strong> (Goal: 22)`;
+    }
+
+    runAssignment();
+</script>
+
+</body>
+</html>

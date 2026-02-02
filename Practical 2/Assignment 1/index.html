@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prac 2 Assignment 1: Predicted vs Actual</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; text-align: center; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #4a90e2; color: white; }
+        #status { font-weight: bold; color: #4a90e2; margin: 15px 0; }
+        canvas { max-height: 400px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Regression Analysis: Predicted vs Actual</h2>
+    <div id="status">Ready to train...</div>
+    <button id="run-btn" onclick="startAssignment()">Run Model & Compare</button>
+    
+    <canvas id="comparisonChart"></canvas>
+
+    <table id="resultsTable" style="display:none;">
+        <thead>
+            <tr>
+                <th>Input (X)</th>
+                <th>Actual (Y)</th>
+                <th>Predicted (Y')</th>
+                <th>Error (Diff)</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+</div>
+
+<script>
+    async function startAssignment() {
+        const status = document.getElementById('status');
+        const btn = document.getElementById('run-btn');
+        btn.disabled = true;
+
+        // 1. Generate Synthetic Data: y = 5x + 2 + noise
+        const xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const yActual = xValues.map(x => 5 * x + 2 + (Math.random() * 4 - 2));
+
+        const xs = tf.tensor2d(xValues, [10, 1]);
+        const ys = tf.tensor2d(yActual, [10, 1]);
+
+        // 2. Build and Train Model
+        const model = tf.sequential();
+        model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+        model.compile({optimizer: tf.train.adam(0.1), loss: 'meanSquaredError'});
+
+        status.innerText = "Training AI... Check Console for logs.";
+        
+        await model.fit(xs, ys, {
+            epochs: 200,
+            callbacks: {
+                onEpochEnd: (epoch, logs) => {
+                    if(epoch % 50 === 0) console.log(`Epoch ${epoch}: Loss ${logs.loss.toFixed(4)}`);
+                }
+            }
+        });
+
+        status.innerText = "Training Complete! Generating Comparisons...";
+
+        // 3. Make Predictions
+        const yPredTensor = model.predict(xs);
+        const yPredicted = Array.from(yPredTensor.dataSync());
+
+        // 4. Update UI & Table
+        const tableBody = document.getElementById('table-body');
+        document.getElementById('resultsTable').style.display = 'table';
+        tableBody.innerHTML = '';
+
+        xValues.forEach((x, i) => {
+            const row = `<tr>
+                <td>${x}</td>
+                <td>${yActual[i].toFixed(2)}</td>
+                <td>${yPredicted[i].toFixed(2)}</td>
+                <td>${Math.abs(yActual[i] - yPredicted[i]).toFixed(2)}</td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+
+        // 5. Plot Chart
+        drawChart(xValues, yActual, yPredicted);
+        btn.disabled = false;
+    }
+
+    function drawChart(x, actual, predicted) {
+        new Chart(document.getElementById('comparisonChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Actual Data',
+                    data: x.map((v, i) => ({x: v, y: actual[i]})),
+                    backgroundColor: '#4a90e2'
+                }, {
+                    label: 'Predicted Line',
+                    type: 'line',
+                    data: x.map((v, i) => ({x: v, y: predicted[i]})),
+                    borderColor: '#ff6384',
+                    fill: false
+                }]
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 2: Tensor Operations</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 40px; text-align: center; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .op-card { margin: 20px 0; padding: 15px; border: 1px solid #e1e4e8; border-radius: 10px; text-align: left; }
+        .vector-text { font-family: 'Courier New', monospace; font-weight: bold; color: #2d3436; background: #dfe6e9; padding: 5px 10px; border-radius: 4px; }
+        .result-text { font-family: 'Courier New', monospace; font-weight: bold; color: #0984e3; }
+        h2 { color: #2d3436; margin-bottom: 5px; }
+        .label { font-size: 0.9em; color: #636e72; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Tensor Mathematics</h2>
+    <p>Performing element-wise operations on Vectors (Rank 1 Tensors)</p>
+
+    <div class="op-card">
+        <span class="label">Initial Vectors:</span>
+        <p>A: <span id="vec-a" class="vector-text"></span></p>
+        <p>B: <span id="vec-b" class="vector-text"></span></p>
+    </div>
+
+    <div class="op-card">
+        <span class="label">1. Element-wise Addition (A + B):</span>
+        <p id="add-res" class="result-text"></p>
+    </div>
+
+    <div class="op-card">
+        <span class="label">2. Element-wise Multiplication (A * B):</span>
+        <p id="mul-res" class="result-text"></p>
+    </div>
+</div>
+
+<script>
+    function runMath() {
+        // 1. Define two Vectors (1D Tensors)
+        const a = tf.tensor1d([1, 2, 3, 4]);
+        const b = tf.tensor1d([10, 20, 30, 40]);
+
+        // Display Inputs
+        document.getElementById('vec-a').innerText = `[${a.dataSync()}]`;
+        document.getElementById('vec-b').innerText = `[${b.dataSync()}]`;
+
+        // 2. Addition: [1+10, 2+20, 3+30, 4+40]
+        const sum = a.add(b);
+        document.getElementById('add-res').innerText = `Result: [${sum.dataSync()}]`;
+
+        // 3. Multiplication: [1*10, 2*20, 3*30, 4*40]
+        const product = a.mul(b);
+        document.getElementById('mul-res').innerText = `Result: [${product.dataSync()}]`;
+
+        // Memory Cleanup (Good practice in TF.js)
+        a.dispose();
+        b.dispose();
+        sum.dispose();
+        product.dispose();
+    }
+
+    runMath();
+</script>
+
+</body>
+</html>

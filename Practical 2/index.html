@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MNIST CNN - Console Output</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 40px; background: #f4f4f4; }
+        .card { background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        #log-area { margin-top: 20px; color: #444; font-weight: bold; }
+        .hint { color: #888; font-size: 0.8em; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>CNN Digit Classifier</h2>
+    <p>Check the <b>Console (F12)</b> to see the training logs.</p>
+    <button id="start-btn">Build & Train Model</button>
+    <div id="log-area">Status: Waiting to start...</div>
+    <p class="hint">Right-click > Inspect > Console to see the AI thinking.</p>
+</div>
+
+<script>
+    async function trainCNN() {
+        const logArea = document.getElementById('log-area');
+        const btn = document.getElementById('start-btn');
+        btn.disabled = true;
+
+        // 1. Create Model Architecture
+        const model = tf.sequential();
+        
+        // Add Convolutional Layer
+        model.add(tf.layers.conv2d({
+            inputShape: [28, 28, 1],
+            kernelSize: 3,
+            filters: 8,
+            activation: 'relu'
+        }));
+
+        // Add Flattening Layer (as per Assignment 3)
+        model.add(tf.layers.flatten());
+
+        // Output Layer (10 digits)
+        model.add(tf.layers.dense({units: 10, activation: 'softmax'}));
+
+        model.compile({
+            optimizer: tf.train.adam(),
+            loss: 'categoricalCrossentropy',
+            metrics: ['accuracy']
+        });
+
+        // --- CONSOLE LOG: Model Summary ---
+        console.log("--- MODEL ARCHITECTURE ---");
+        model.summary(); // This prints the table of layers to the console
+
+        // 2. Generate synthetic digit '3' (A 28x28 matrix)
+        const dummyInput = tf.randomNormal([1, 28, 28, 1]);
+        const dummyLabel = tf.oneHot(tf.tensor1d([3], 'int32'), 10);
+
+        logArea.innerText = "Training... watch your Console!";
+
+        // 3. Train with Console Logging
+        await model.fit(dummyInput, dummyLabel, {
+            epochs: 5,
+            callbacks: {
+                onEpochEnd: (epoch, logs) => {
+                    // --- CONSOLE LOG: Training Progress ---
+                    console.log(`Epoch ${epoch + 1}: loss = ${logs.loss.toFixed(4)} | accuracy = ${logs.acc.toFixed(4)}`);
+                }
+            }
+        });
+
+        // 4. Final Prediction
+        const prediction = model.predict(dummyInput);
+        const result = prediction.argMax(1).dataSync()[0];
+        
+        console.log(`--- TRAINING COMPLETE ---`);
+        console.log(`AI Prediction: ${result}`);
+        
+        logArea.innerText = "Prediction complete! See console for details.";
+        btn.disabled = false;
+    }
+
+    document.getElementById('start-btn').addEventListener('click', trainCNN);
+</script>
+
+</body>
+</html>
