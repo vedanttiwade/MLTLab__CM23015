@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Text Sentiment Analysis</title>
-<link rel="stylesheet" href="style.css">
-
-<!-- Sentiment.js library -->
-<script src="https://cdn.jsdelivr.net/npm/sentiment@5.0.2/build/sentiment.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Text Sentiment Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/thisandagain/sentiment@master/build/sentiment.min.js"></script>
 </head>
-
 <body>
 
-<div class="container">
+    <div class="container">
+        <h1>Text Sentiment Analysis</h1>
+        <textarea id="textInput" placeholder="Enter your text here..."></textarea>
+        
+        <div class="button-group">
+            <button onclick="analyzeSentiment()">Analyze Sentiment</button>
+            <button onclick="clearAll()">Clear</button>
+        </div>
 
-<h1>Text Sentiment Analysis</h1>
+        <div id="result"></div>
+    </div>
 
-<textarea id="textInput" placeholder="Enter your text here..."></textarea>
-
-<button onclick="analyzeSentiment()">Analyze Sentiment</button>
-
-<div id="result"></div>
-
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
