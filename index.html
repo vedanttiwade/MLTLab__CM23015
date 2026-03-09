@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Sentiment Analysis</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Text Sentiment Analysis</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Sentiment.js library -->
+<script src="https://cdn.jsdelivr.net/npm/sentiment@5.0.2/build/sentiment.min.js"></script>
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>Sentiment Analysis</h1>
+<h1>Text Sentiment Analysis</h1>
 
 <textarea id="textInput" placeholder="Enter your text here..."></textarea>
 
-<br><br>
-
 <button onclick="analyzeSentiment()">Analyze Sentiment</button>
 
-<p id="result"></p>
+<div id="result"></div>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sentiment@5.0.2/build/browser/sentiment.min.js"></script>
 <script src="script.js"></script>
 
 </body>
