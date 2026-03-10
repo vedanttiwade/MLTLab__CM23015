@@ -1,0 +1,75 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f7f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 { margin-bottom: 5px; color: #333; }
+.subtitle { color: #888; margin-bottom: 25px; font-size: 0.85rem; }
+
+.card {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.training-card { background-color: #fcfcfc; }
+.desc { font-size: 0.75rem; color: #999; margin-bottom: 10px; }
+
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-train { background-color: #27ae60; color: white; }
+.btn-predict { background-color: #3498db; color: white; }
+.btn-predict:disabled { background-color: #ccc; cursor: not-allowed; }
+
+#status { margin-top: 10px; font-weight: bold; font-size: 0.85rem; }
+
+.result-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+}
+
+.result-line { font-size: 1.1rem; margin-bottom: 5px; }
+.confidence-line { font-size: 0.85rem; opacity: 0.8; }
+
+.positive { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.negative { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.neutral { background-color: #e2e3e5; color: #383d41; border: 1px solid #d6d8db; }

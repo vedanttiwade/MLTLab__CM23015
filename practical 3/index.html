@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Practical No. 3</h1>
+        <h2>Text Sentiment Analysis</h2>
+        <p>Enter text below to classify it as <span class="pos">Positive</span> or <span class="neg">Negative</span>.</p>
+        
+        <textarea id="userInput" placeholder="Type your thoughts here..."></textarea>
+        
+        <button onclick="analyzeSentiment()">Analyze Sentiment</button>
+        
+        <div id="resultContainer" class="hidden">
+            <p>Sentiment: <strong id="sentimentLabel">...</strong></p>
+            <p>Confidence: <span id="confidenceValue">0</span>%</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

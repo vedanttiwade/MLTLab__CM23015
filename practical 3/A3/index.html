@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A3: RNN vs Dense Network Comparison</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 3</h1>
+    <p class="subtitle">A3: Performance Comparison (RNN vs Dense)</p>
+
+    <div class="card training-card">
+        <h3>1. Training Phase</h3>
+        <button class="btn-train" onclick="trainModels()">Train Both Models</button>
+        <div id="status">🔴 Models Not Trained</div>
+    </div>
+
+    <div class="card">
+        <h3>2. Test Comparison</h3>
+        <textarea id="userInput" placeholder="Type 'not happy' to see the difference..."></textarea>
+        <button class="btn-predict" id="compareBtn" onclick="compareModels()" disabled>Compare Performance</button>
+    </div>
+
+    <div class="comparison-grid">
+        <div id="denseResult" class="result-box">
+            <strong>Simple Dense</strong>
+            <p id="denseLabel">---</p>
+            <small>Score: <span id="denseScore">0</span></small>
+        </div>
+        <div id="rnnResult" class="result-box">
+            <strong>RNN (Sequence)</strong>
+            <p id="rnnLabel">---</p>
+            <small>Score: <span id="rnnScore">0</span></small>
+        </div>
+    </div>
+    
+    <div id="interpretation" class="card" style="display:none; margin-top:15px; font-size: 0.85rem; text-align: left;">
+        <strong>Analysis:</strong> <span id="analysisText"></span>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Classifier - Practical 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 3</h1>
+    <p class="subtitle">A1: Train Classifier | A2: Interpret Confidence</p>
+
+    <div class="card training-card">
+        <h3>1. Dataset Training (A1)</h3>
+        <p class="desc">Train the model on a small positive/negative dataset.</p>
+        <button class="btn-train" onclick="trainModel()">Train on Small Dataset</button>
+        <div id="status">🔴 Model Not Trained</div>
+    </div>
+
+    <div class="card">
+        <h3>2. Predict & Interpret (A2)</h3>
+        <textarea id="userInput" placeholder="Try 'i am happy' or 'i dont work here'..."></textarea>
+        <button class="btn-predict" id="predictBtn" onclick="runPrediction()" disabled>Run Classifier</button>
+    </div>
+
+    <div id="resultArea" class="result-box">
+        <div class="result-line">Sentiment: <strong id="sentimentLabel"></strong></div>
+        <div class="confidence-line">Confidence: <span id="confidenceLabel">0</span>%</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
