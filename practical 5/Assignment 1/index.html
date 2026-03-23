@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1: MobileNet Object Classification</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 5 (A1)</h1>
+    <h2>MobileNet Object Classifier</h2>
+    
+    <div class="video-container">
+        <video id="webcam" autoplay muted playsinline width="400" height="300"></video>
+        <div id="loadingOverlay">Loading Model...</div>
+    </div>
+
+    <div class="result-card">
+        <p>Object Detected:</p>
+        <h3 id="predictionText">---</h3>
+        <p>Probability: <span id="probabilityText">0%</span></p>
+    </div>
+
+    <button id="startBtn" onclick="init()">Start Camera & Classify</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

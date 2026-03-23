@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A3: Performance & FPS Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 5 (A3)</h1>
+    <p>Performance Analysis: FPS & Inference Latency</p>
+    
+    <div class="video-wrap">
+        <video id="webcam" autoplay muted playsinline width="640" height="480"></video>
+        <canvas id="overlay"></canvas>
+        
+        <div id="statsBox">
+            <div>FPS: <span id="fpsVal">0</span></div>
+            <div>Latency: <span id="msVal">0</span> ms</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="startBtn" onclick="startPerformanceTest()">Start Performance Test</button>
+        <p id="analysis">Analysis: Waiting for data...</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

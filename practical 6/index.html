@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical No. 6 - PoseNet Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 6</h1>
+    <h2>Pose Detection with PoseNet</h2>
+    <p id="status">Status: Loading PoseNet Model...</p>
+
+    <div class="view-container">
+        <video id="webcam" autoplay muted playsinline width="640" height="480"></video>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="controls">
+        <button id="startBtn" onclick="setupCamera()">Start Real-Time Detection</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

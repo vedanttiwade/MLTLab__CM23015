@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2: Overlay Classification Labels</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 5 (A2)</h1>
+    <p id="statusText">Loading AI Model...</p>
+    
+    <div class="video-wrap">
+        <video id="webcam" autoplay muted playsinline width="640" height="480"></video>
+        <canvas id="overlay"></canvas>
+    </div>
+
+    <button id="startBtn" onclick="startApp()">Start Real-Time Overlay</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
