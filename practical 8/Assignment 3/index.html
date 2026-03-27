@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A3: Incremental Category Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 8 (A3)</h1>
+    <p class="subtitle">Incremental Learning & Scalability Analysis</p>
+
+    <div class="main-layout">
+        <div class="video-section">
+            <video id="webcam" autoplay muted playsinline width="320" height="240"></video>
+            <div id="predictionDisplay">Add a category to start</div>
+        </div>
+
+        <div class="sidebar">
+            <div class="input-group">
+                <input type="text" id="catName" placeholder="Category Name (e.g. Pen)">
+                <button onclick="addNewCategory()">Add New Category</button>
+            </div>
+            <div id="categoryList"></div>
+        </div>
+    </div>
+    
+    <div class="analysis-box">
+        <h4>Performance Metrics</h4>
+        <p>Total Classes: <span id="classCount">0</span></p>
+        <p>Inference Latency: <span id="latency">0</span> ms</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

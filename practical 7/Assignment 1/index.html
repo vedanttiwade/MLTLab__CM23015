@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1: Train and Save to LocalStorage</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 7 (A1)</h1>
+    <p class="subtitle">Model Lifecycle: Train & Local Persistence</p>
+
+    <div class="card">
+        <h3>Training Control</h3>
+        <p class="desc">This will train a 1-layer Dense model and save it to 'localstorage://my-model'.</p>
+        
+        <div class="progress-container">
+            <div id="progressBar"></div>
+        </div>
+        
+        <button id="trainBtn" onclick="runA1()">Start Training & Save</button>
+        <p id="status">Status: Ready</p>
+    </div>
+
+    <div id="modelDetails" class="info-box" style="display:none;">
+        <strong>Model Saved!</strong>
+        <p>Location: <code id="storageLoc">localstorage://my-model</code></p>
+        <p>Check your browser's <b>Application -> Local Storage</b> tab in F12 tools to see the data.</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

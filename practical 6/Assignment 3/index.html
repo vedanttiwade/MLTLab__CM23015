@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A3: Single-Pose vs Multi-Pose Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 6 (A3)</h1>
+    <p class="subtitle">Accuracy & Performance Analysis</p>
+
+    <div class="mode-selector">
+        <label>Detection Mode:</label>
+        <select id="poseMode" onchange="updateMode()">
+            <option value="single">Single-Pose (Fastest)</option>
+            <option value="multi">Multi-Pose (Group Detection)</option>
+        </select>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">Latency: <span id="latency">0</span> ms</div>
+        <div class="stat-card">People Found: <span id="count">0</span></div>
+    </div>
+
+    <div class="view-wrap">
+        <video id="webcam" autoplay muted playsinline width="640" height="480"></video>
+        <canvas id="overlay"></canvas>
+    </div>
+
+    <button onclick="init()">Initialize Camera</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

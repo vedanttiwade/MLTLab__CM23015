@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2: Squat Counter (PoseNet)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 6 (A2)</h1>
+    <div class="stats-bar">
+        <div class="stat">Repetitions: <span id="count">0</span></div>
+        <div id="feedback">Stand in view to start</div>
+    </div>
+
+    <div class="video-container">
+        <video id="webcam" autoplay muted playsinline width="640" height="480"></video>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <button onclick="startExercise()">Start Squat Tracker</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 7: Model Deployment</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 7</h1>
+    <p class="subtitle">Deploying a Model in Browser</p>
+
+    <div class="card">
+        <h3>Step 1: Train & Save</h3>
+        <p class="desc">Trains a model to predict $y = 2x - 1$ and saves it to local storage.</p>
+        <button class="btn-action" onclick="trainAndSave()">Train & Save Model</button>
+        <div id="trainStatus" class="status-indicator">🔴 Not Trained</div>
+    </div>
+
+    <div class="card">
+        <h3>Step 2: Reload & Predict</h3>
+        <input type="number" id="inputValue" placeholder="Enter X value (e.g. 10)">
+        <button id="predictBtn" class="btn-action" onclick="loadAndPredict()" disabled>Load & Run Prediction</button>
+    </div>
+
+    <div id="resultArea" class="result-box">
+        Predicted Y: <strong id="outputValue">---</strong>
+        <div class="formula-note">Expected (approx): $y = 2x - 1$</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

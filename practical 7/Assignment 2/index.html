@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2: Reload & Verify Model</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 7 (A2)</h1>
+    <p class="subtitle">Model Persistence: Reloading & Verification</p>
+
+    <div class="card">
+        <h3>Verification Phase</h3>
+        <p class="desc">Enter a value for X. The model will be reloaded from memory to predict Y.</p>
+        
+        <input type="number" id="testInput" placeholder="Enter X (e.g., 10)">
+        <button onclick="verifyModel()">Reload & Predict</button>
+    </div>
+
+    <div id="resultCard" class="result-card" style="display:none;">
+        <h4>Prediction Results</h4>
+        <div class="data-row">Input (X): <span id="valX">0</span></div>
+        <div class="data-row">Predicted (Y): <strong id="valY">0</strong></div>
+        <p id="matchStatus"></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

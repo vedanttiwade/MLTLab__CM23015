@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practical 8: Transfer Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 8</h1>
+    <p class="subtitle">Transfer Learning: Retraining MobileNet</p>
+
+    <div class="video-container">
+        <video id="webcam" autoplay muted playsinline width="400" height="300"></video>
+        <div id="prediction" class="prediction-overlay">Waiting for training...</div>
+    </div>
+
+    <div class="controls">
+        <div class="train-box">
+            <button class="btn-train" onmousedown="addExample(0)">Train Category A (e.g. Apple)</button>
+            <span id="count0">0</span> examples
+        </div>
+        <div class="train-box">
+            <button class="btn-train" onmousedown="addExample(1)">Train Category B (e.g. Banana)</button>
+            <span id="count1">0</span> examples
+        </div>
+        <button id="startBtn" onclick="init()">1. Start Webcam</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

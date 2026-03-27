@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A3: Export & Import Model Files</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 7 (A3)</h1>
+    <p class="subtitle">External Deployment: File Export/Import</p>
+
+    <div class="card">
+        <h3>Step 1: Export to Files</h3>
+        <p class="desc">Download the trained model as 'model.json' and 'weights.bin'.</p>
+        <button class="btn-export" onclick="exportModel()">Download Model Files</button>
+    </div>
+
+    <div class="card">
+        <h3>Step 2: Re-Import & Test</h3>
+        <p class="desc">Select BOTH files downloaded above to re-import.</p>
+        <input type="file" id="fileSelector" multiple>
+        <button class="btn-import" onclick="importAndTest()">Upload & Predict</button>
+    </div>
+
+    <div id="resultBox" class="result-box" style="display:none;">
+        <h4>Import Successful!</h4>
+        <p>Testing with X = 5...</p>
+        <p>Predicted Y: <strong id="predictionVal">0</strong></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

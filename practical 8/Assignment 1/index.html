@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A1: Retrain MobileNet (3 Categories)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 8 (A1)</h1>
+    <p class="subtitle">Transfer Learning: 3-Category Fruit Classifier</p>
+
+    <div class="video-box">
+        <video id="webcam" autoplay muted playsinline width="400" height="300"></video>
+        <div id="predictionBar" class="overlay">Waiting for training data...</div>
+    </div>
+
+    <div class="training-panel">
+        <div class="category">
+            <button class="btn-add" onmousedown="addExample(0)">Train Apple</button>
+            <span id="count0">0</span> imgs
+        </div>
+        <div class="category">
+            <button class="btn-add" onmousedown="addExample(1)">Train Banana</button>
+            <span id="count1">0</span> imgs
+        </div>
+        <div class="category">
+            <button class="btn-add" onmousedown="addExample(2)">Train Orange</button>
+            <span id="count2">0</span> imgs
+        </div>
+    </div>
+
+    <button id="initBtn" class="btn-main" onclick="setupApp()">Initialize System</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

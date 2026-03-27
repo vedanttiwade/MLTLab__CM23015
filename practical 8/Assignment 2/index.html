@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A2: Accuracy & Confusion Matrix</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Practical No. 8 (A2)</h1>
+    <p class="subtitle">Model Evaluation & Error Analysis</p>
+
+    <div class="video-container">
+        <video id="webcam" autoplay muted playsinline width="400" height="300"></video>
+    </div>
+
+    <div class="controls">
+        <button class="btn-train" onmousedown="addExample(0)">Train Apple</button>
+        <button class="btn-train" onmousedown="addExample(1)">Train Banana</button>
+        <button class="btn-val" onclick="runValidation()">Run Validation (Test Accuracy)</button>
+    </div>
+
+    <div id="results" class="results-area" style="display:none;">
+        <h3>Results: <span id="accuracyText">0%</span> Accuracy</h3>
+        <table id="confusionMatrix">
+            <thead>
+                <tr>
+                    <th>Actual \ Predicted</th>
+                    <th>Apple</th>
+                    <th>Banana</th>
+                </tr>
+            </thead>
+            <tbody id="matrixBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
