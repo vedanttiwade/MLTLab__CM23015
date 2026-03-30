@@ -3,31 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment Classifier - Practical 3</title>
+    <title>A1: Pose Keypoints & Skeleton</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
 </head>
 <body>
 
 <div class="container">
-    <h1>Practical No. 3</h1>
-    <p class="subtitle">Train & Test a Sentiment Classifier (A1)</p>
+    <h1>Practical No. 6 (A1)</h1>
+    <p id="status">Status: Loading AI...</p>
 
-    <div class="card training-card">
-        <h3>1. Dataset Training</h3>
-        <p class="desc">Feed the model the initial positive/negative dataset.</p>
-        <button class="btn-train" onclick="trainModel()">Train on Small Dataset</button>
-        <div id="status">🔴 Model Not Trained</div>
+    <div class="video-box">
+        <video id="webcam" autoplay muted playsinline width="640" height="480"></video>
+        <canvas id="skeletonCanvas"></canvas>
     </div>
 
-    <div class="card">
-        <h3>2. Predict Sentiment</h3>
-        <textarea id="userInput" placeholder="Enter text (e.g., 'i am happy' or 'i dont work here')..."></textarea>
-        <button class="btn-predict" id="predictBtn" onclick="runPrediction()" disabled>Run Classifier</button>
-    </div>
-
-    <div id="resultArea" class="result-box">
-        Result: <strong id="sentimentLabel"></strong>
-    </div>
+    <button onclick="initPoseNet()">Start Skeleton Detection</button>
 </div>
 
 <script src="script.js"></script>
